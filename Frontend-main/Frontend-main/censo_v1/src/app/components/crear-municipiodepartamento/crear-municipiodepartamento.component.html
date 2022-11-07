@@ -1,0 +1,82 @@
+<mat-card-content>
+  <div>
+    <br>
+    <form [formGroup]="form">
+      <h4 class="center-content">Departamento</h4>
+      <div class="center-content">
+        <mat-form-field appearance="fill" class="tamaño">
+          <mat-label>Seleccione un departamento</mat-label>
+          <mat-select [(ngModel)]="departamentoSeleccionado.id_departamento"
+                      (ngModelChange)="municipiosDelDepartamento($event)" formControlName="departamento">
+            <mat-option *ngFor="let d of departamento" [value]="d.id_departamento">
+              {{ d.nombre_departamento }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="checkError('departamento', 'required')">Un departamento es requerido!</mat-error>
+        </mat-form-field>
+      </div>
+
+      <h4 class="center-content">Municipio</h4>
+      <div class="center-content">
+        <mat-form-field appearance="fill" class="tamaño">
+          <mat-label>Selecione un municipio</mat-label>
+          <mat-select [(ngModel)]="infomacionpoblacion.codigo_municipio" formControlName="municipio">
+            <mat-option *ngFor="let m of municipio" [value]="m.id_municipio">
+              {{ m.nombre_municipio }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="checkError('municipio', 'required')">Un municipio es requerido!</mat-error>
+        </mat-form-field>
+      </div>
+
+      <h4 class="center-content">Poblacion Urbana</h4>
+      <div class="center-content">
+        <mat-form-field appearance="fill" class="tamaño">
+          <mat-label>Mujeres Poblacion Urbana</mat-label>
+          <input type="number" matInput [(ngModel)]="infomacionpoblacion.poblacion_mujeres_urb"
+                 formControlName="poblacion_m_u">
+          <mat-error *ngIf="checkError('poblacion_m_u', 'required')">Un valor es requerido!</mat-error>
+          <mat-error *ngIf="checkError('poblacion_m_u', 'min')">Se requiere un valor mayor a cero!</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="center-content">
+        <mat-form-field appearance="fill" class="tamaño">
+          <mat-label>Hombres Poblacion Urbana</mat-label>
+          <input type="number" matInput [(ngModel)]="infomacionpoblacion.poblacion_hombres_urb"
+                 formControlName="poblacion_h_u">
+          <mat-error *ngIf="checkError('poblacion_h_u', 'required')">Un valor es requerido!</mat-error>
+          <mat-error *ngIf="checkError('poblacion_h_u', 'min')">Se requiere un valor mayor a cero!</mat-error>
+        </mat-form-field>
+      </div>
+
+      <h4 class="center-content">Poblacion Rural</h4>
+      <div class="center-content">
+        <mat-form-field appearance="fill" class="tamaño">
+          <mat-label>Mujeres Poblacion Rural</mat-label>
+          <input type="number" matInput [(ngModel)]="infomacionpoblacion.poblacion_mujeres_rural"
+                 formControlName="poblacion_m_r">
+          <mat-error *ngIf="checkError('poblacion_m_r', 'required')">Un valor es requerido!</mat-error>
+          <mat-error *ngIf="checkError('poblacion_m_r', 'min')">Se requiere un valor mayor a cero!</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="center-content">
+        <mat-form-field appearance="fill" class="tamaño">
+          <mat-label>Hombres Poblacion Rural</mat-label>
+          <input type="number" matInput [(ngModel)]="infomacionpoblacion.poblacion_hombres_rural"
+                 formControlName="poblacion_h_r">
+          <mat-error *ngIf="checkError('poblacion_h_r', 'required')">Un valor es requerido!</mat-error>
+          <mat-error *ngIf="checkError('poblacion_h_r', 'min')">Se requiere un valor mayor a cero!</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="example-button-row center-content">
+        <button class="btn btn-success tamaño" type="submit" [disabled]="!form.valid" mat-flat-button color="primary"
+                (click)="crearRegistro()">Crear Registro
+        </button>
+      </div>
+    </form>
+  </div>
+
+</mat-card-content>

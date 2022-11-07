@@ -1,0 +1,76 @@
+<div class="row">
+  <div class="col">
+    <div class="form-control">
+      <mat-card-content>
+        <div>
+          <br>
+          <h4 class="center-content">Departamento</h4>
+          <div class="center-content">
+            <mat-form-field appearance="fill" class="tamaño">
+              <mat-label>Seleccione un departamento</mat-label>
+              <mat-select [(ngModel)]="departamentoSeleccionado.id_departamento"
+                          (ngModelChange)="municipiosDelDepartamento($event)" required>
+                <mat-option *ngFor="let d of departamento" [value]="d.id_departamento">
+                  {{ d.nombre_departamento }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <h4 class="center-content">Municipio</h4>
+          <div class="center-content">
+            <mat-form-field appearance="fill" class="tamaño">
+              <mat-label>Selecione un municipio</mat-label>
+              <mat-select [(ngModel)]="municipioSeleccionado.id_municipio"
+                          (ngModelChange)="obtenerInformacionPoblacion($event)" required>
+                <mat-option *ngFor="let m of municipio" [value]="m.id_municipio">
+                  {{ m.nombre_municipio }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <br>
+        </div>
+      </mat-card-content>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div *ngIf="total !== 0" class="center-content">
+      <h2>Total de Personas a la fecha: {{total}}</h2>
+    </div>
+    <div *ngIf="informacionPoblacion.length == 0" class="center-content">
+      <h2>Sin Registros!</h2>
+    </div>
+      <mat-accordion>
+      <mat-expansion-panel hideToggle *ngFor="let i of informacionPoblacion">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{i.fecha}}
+          </mat-panel-title>
+          <mat-panel-description>
+            Registro De La Población en el municipio.
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-list>
+          <mat-list-item>Cantidad de Hombres en la periferia urbana: {{i.poblacion_hombres_urb}}</mat-list-item>
+          <mat-list-item>Cantidad de Mujeres en la periferia urbana: {{i.poblacion_mujeres_urb}}</mat-list-item>
+
+          <mat-divider></mat-divider>
+          <mat-list-item>Cantidad de Hombres en la periferia rural: {{i.poblacion_hombres_rural}}</mat-list-item>
+          <mat-list-item>Cantidad de Mujeres en la periferia rural: {{i.poblacion_mujeres_rural}}</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Total poblacion Urbana: {{i.poblacion_urbana}}</mat-list-item>
+          <mat-list-item>Total poblacion Rural: {{i.poblacion_rural}}</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Porcentaje población urbana: {{i.porcentaje_urbana}}%</mat-list-item>
+          <mat-list-item>Porcentaje población rural: {{i.porcentaje_rural}}%</mat-list-item>
+          <mat-list-item>Total poblacion: {{i.total_poblacion}}</mat-list-item>
+          <mat-list-item>Categoría del municipio:<strong> {{i.categoria_municipio}}</strong></mat-list-item>
+        </mat-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div>
+
+
+
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>Censo V1.0</span>
+      <span class="menu-spacer"></span>
+      <div fxShow="true" fxHide.lt-md>
+        <a routerLink="CrearRegistros" mat-button>Crear Registros</a>
+        <a routerLink="ConsultarRegistros" mat-button>Consultar Registros</a>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-sidenav-container fxFlexFill>
+    <mat-sidenav-content fxFlexFill><router-outlet></router-outlet></mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
