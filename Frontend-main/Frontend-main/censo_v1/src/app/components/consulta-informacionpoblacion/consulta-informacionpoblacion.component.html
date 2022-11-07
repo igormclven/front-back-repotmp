@@ -41,10 +41,12 @@
     <div *ngIf="total !== 0" class="center-content">
       <h2>Total de Personas a la fecha: {{total}}</h2>
     </div>
-    <div *ngIf="informacionPoblacion.length == 0" class="center-content">
-      <h2>Sin Registros!</h2>
+    <div *ngIf="informacionPoblacion !== undefined && informacionPoblacion !== null">
+      <div *ngIf="informacionPoblacion.length == 0" class="center-content">
+        <h2>Sin Registros!</h2>
+      </div>
     </div>
-      <mat-accordion>
+    <mat-accordion>
       <mat-expansion-panel hideToggle *ngFor="let i of informacionPoblacion">
         <mat-expansion-panel-header>
           <mat-panel-title>
